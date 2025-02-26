@@ -1,12 +1,30 @@
-/* Minimal custom styles */
+/* Minimal custom styles for Netflix-like UI */
 #carousel > div {
     transition: transform 0.5s ease-in-out;
 }
+
 .category-row {
-    display: flex;
-    overflow-x: auto;
-    gap: 1rem;
+    -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
 }
+
 .category-row::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for sleekness */
+    display: none; /* Hide scrollbar in Chrome/Safari */
+}
+
+/* Ensure smooth scrolling and spacing */
+.category-row > div {
+    flex-shrink: 0;
+}
+
+/* Add hover effects for interactivity */
+.category-row > div:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* Style the video placeholders (optional, remove if not needed) */
+.bg-gray-800 {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

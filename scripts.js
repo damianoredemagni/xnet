@@ -49,11 +49,11 @@ if (document.getElementById("carousel")) {
       const videos = data.videos.filter((v) => v.category === cat);
       categories.innerHTML += `
         <h2 class="text-xl mb-2">${cat}</h2>
-        <div class="category-row pb-4">
+        <div class="category-row pb-4 flex overflow-x-auto gap-4">
           ${videos
             .map(
               (v) => `
-            <a href="details.html?id=${v.id}" class="min-w-[300px]">
+            <a href="details.html?id=${v.id}" class="min-w-[300px] bg-gray-800 p-4 rounded">
               <blockquote class="twitter-tweet" data-media-max-width="560"><a href="${v.url}"></a></blockquote>
               <p>${v.title}</p>
             </a>
@@ -75,87 +75,10 @@ if (document.getElementById("video")) {
     if (video) {
       document.getElementById("video").innerHTML = `
         <h1 class="text-2xl mb-4">${video.title}</h1>
-        <blockquote class="twitter-tweet" data-media-max-width="560"><a href="${video.url}"></a></blockquote>
+        <blockquote class="twitter-tweet" data-media-max-width="560"><a href="${v.url}"></a></blockquote>
       `;
     } else {
       document.getElementById("video").innerHTML = "<p>Video not found.</p>";
     }
   });
-}
-
-// Admin page
-if (document.getElementById("add-video")) {
-  const form = document.getElementById("add-video");
-  const list = document.getElementById("video-list");
-
-  fetchData().then((data) => {
-    renderVideos(data);
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const newVideo = {
-        id: String(Date.now()), // Simple ID generation
-        url: document.getElementById("url").value,
-        title: document.getElementById("title").value,
-        category: document.getElementById("category").value,
-        section: document.getElementById("section").value,
-      };
-      if (!data.categories.includes(newVideo.category)) {
-        data.categories.push(newVideo.category);
-      }
-      data.videos.push(newVideo);
-      saveData(data);
-      renderVideos(data);
-      form.reset();
-    });
-  });
-
-  function renderVideos(data) {
-    list.innerHTML = data.videos
-      .map(
-        (v) => `
-      <div class="flex items-center mb-2">
-        <span class="flex-1">${v.title} (${v.category})</span>
-        <button onclick="editVideo('${v.id}')" class="p-1 bg-yellow-600 rounded mr-2">Edit</button>
-        <button onclick="deleteVideo('${v.id}')" class="p-1 bg-red-600 rounded">Delete</button>
-      </div>
-    `,
-      )
-      .join("");
-  }
-
-  function saveData(data) {
-    // For now, log to console; in deployment, manually update data.json
-    console.log("Update data.json with:", JSON.stringify(data, null, 2));
-    alert(
-      "Please manually update data.json in the repo with the new data (check console).",
-    );
-  }
-
-  window.deleteVideo = (id) => {
-    fetchData()
-      .then((data) => {
-        data.videos = data.videos.filter((v) => v.id !== id);
-        saveData(data);
-        renderVideos(data);
-      })
-      .catch((error) => console.error("Delete failed:", error));
-  };
-
-  window.editVideo = (id) => {
-    fetchData()
-      .then((data) => {
-        const video = data.videos.find((v) => v.id === id);
-        if (video) {
-          document.getElementById("url").value = video.url;
-          document.getElementById("title").value = video.title;
-          document.getElementById("category").value = video.category;
-          document.getElementById("section").value = video.section;
-          data.videos = data.videos.filter((v) => v.id !== id);
-          saveData(data);
-          renderVideos(data);
-        }
-      })
-      .catch((error) => console.error("Edit failed:", error));
-  };
 }

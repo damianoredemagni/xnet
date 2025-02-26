@@ -6,7 +6,21 @@
       "title": "Prompt Magic",
       "category": "Tech",
       "section": "featured"
+    },
+    {
+      "id": "2",
+      "url": "https://twitter.com/brotzky_/status/1892984381771337866",
+      "title": "Tech Challenge",
+      "category": "Tech",
+      "section": "trending"
+    },
+    {
+      "id": "3",
+      "url": "https://twitter.com/productsantos/status/1893057660179599649",
+      "title": "Funny Post",
+      "category": "Humor",
+      "section": "trending"
     }
   ],
-  "categories": ["Tech"]
+  "categories": ["Tech", "Humor"]
 }
