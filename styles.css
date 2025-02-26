@@ -1,10 +1,10 @@
 /* Minimal custom styles for Netflix-like, pixel-tight UI */
 body {
-    font-family: "Arial", sans-serif; /* Clean, readable sans-serif font */
-    -webkit-font-smoothing: antialiased; /* Crisp text rendering */
+    font-family: "Arial", sans-serif;
+    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #141414; /* Darker black for premium look */
-    color: #f5f5f5; /* Off-white for readability */
+    background-color: #141414;
+    color: #f5f5f5;
 }
 
 /* Wrapper (16px left-right padding) */
@@ -26,175 +26,167 @@ section {
     margin-right: auto;
 }
 
-/* Carousel styling */
-#carousel > div {
-    /* No animations, just static positioning */
-}
-
+/* Carousel styling (centered, no text) */
 #carousel blockquote {
-    max-width: 800px; /* Pixel-tight max-width for X/Twitter embeds in carousel */
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Category rows with grid and horizontal scrolling */
+/* Category rows (24px gap, no stretching) */
 .category-row {
-    display: grid; /* Use grid for precise gap control */
-    grid-auto-flow: column; /* Horizontal flow for scrolling */
-    overflow-x: auto; /* Enable horizontal scrolling */
-    gap: 24px; /* 24px gap between items, as requested */
-    padding-bottom: 1rem; /* Slight padding for scrolling */
-    -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
-    scrollbar-width: none; /* Hide scrollbar in Firefox */
-    align-items: start; /* Align items to the top */
-    justify-content: start; /* Left-aligned, as requested */
+    display: grid;
+    grid-auto-flow: column;
+    overflow-x: auto;
+    gap: 24px; /* Fixed 24px gap */
+    padding-bottom: 1rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    align-items: start;
+    justify-content: start;
 }
 
 .category-row::-webkit-scrollbar {
-    display: none; /* Hide scrollbar in Chrome/Safari */
+    display: none;
 }
 
-/* Ensure smooth scrolling and consistent sizing for category items */
+/* Category row items */
 .category-row > div {
-    min-width: 320px; /* Pixel-tight max-width for category row items */
-    max-width: 320px; /* Cap width for consistency */
-    flex-shrink: 0; /* Prevent items from shrinking */
+    min-width: 320px;
+    max-width: 320px;
+    flex-shrink: 0;
 }
 
-/* Video container styling (Netflix-like card, using grid) */
+/* Video container (card styling) */
 .video-container {
-    display: grid; /* Use grid for card layout and gap control */
-    background-color: #1a202c; /* Slightly lighter dark gray for contrast */
+    display: grid;
+    background-color: #1a202c;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    gap: 8px; /* Internal gap for card content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    gap: 8px;
 }
 
-/* Video content (X embed and title) */
+/* Video content */
 .video-content {
     position: relative;
-    z-index: 5; /* Below overlay */
+    z-index: 5;
 }
 
-/* Clickable overlay for videos */
+/* Clickable overlay */
 .video-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 10; /* Above the video content */
-    background: rgba(0, 0, 0, 0); /* Fully transparent (empty) */
+    z-index: 10;
+    background: rgba(0, 0, 0, 0);
 }
 
 .video-overlay:hover {
-    background: rgba(0, 0, 0, 0.2); /* Darker on hover for feedback */
-    cursor: pointer; /* Indicate clickable area */
+    background: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 
-/* Style the X embed */
+/* X embed */
 .video-content blockquote {
     margin: 0;
-    padding: 0; /* Remove default padding for pixel-tight fit */
-    max-width: 100%; /* Ensure embed fits within 320px or 800px */
+    padding: 0;
+    max-width: 100%;
 }
 
-/* Style the title below the video (Netflix-like, pixel-tight) */
+/* Truncated preview text */
 .video-content p {
     margin: 0;
-    padding: 12px; /* Pixel-tight padding for readability */
-    background: rgba(0, 0, 0, 0.6); /* Slightly darker for contrast */
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.6);
     color: #f5f5f5;
     text-align: center;
-    font-size: 0.875rem; /* Smaller, readable font size */
-    line-height: 1.25; /* Better readability */
-    font-weight: 500; /* Slightly lighter for minimal look */
+    font-size: 0.875rem;
+    line-height: 1.25;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 /* Details page video styling */
 #video {
-    background-color: #1a202c; /* Consistent with cards */
+    background-color: #1a202c;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    padding: 16px; /* Pixel-tight padding */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    padding: 16px;
 }
 
-/* Typography refinements */
+/* Typography */
 h1,
 h2 {
-    font-weight: 600; /* Slightly bolder for headings */
-    color: #f5f5f5; /* Off-white for readability */
+    font-weight: 600;
+    color: #f5f5f5;
 }
 
 p {
-    font-weight: 400; /* Normal weight for body text */
+    font-weight: 400;
 }
 
-/* Responsive adjustments for pixel-tight design */
+/* Responsive adjustments */
 @media (max-width: 767px) {
-    /* Tailwind's 'sm' breakpoint and below */
     #carousel {
-        height: 40vh; /* Shorter height on smaller screens */
+        height: 40vh;
     }
 
     .wrapper {
-        padding-left: 8px; /* Reduced padding on mobile */
+        padding-left: 8px;
         padding-right: 8px;
     }
 
     section {
-        padding-top: 20px; /* Reduced padding on mobile */
+        padding-top: 20px;
         padding-bottom: 20px;
     }
 
     .category-row > div {
-        min-width: 240px; /* Smaller cards on mobile */
+        min-width: 240px;
         max-width: 240px;
     }
 
     #carousel blockquote {
-        max-width: 600px; /* Reduced max-width for mobile carousel */
+        max-width: 600px;
     }
 }
 
 @media (min-width: 768px) {
-    /* Tailwind's 'md' breakpoint */
     .category-row {
-        overflow-x: visible; /* Disable horizontal scrolling on medium screens and up */
-        grid-auto-flow: row; /* Switch to row flow for grid-like layout */
-        grid-template-columns: repeat(
-            auto-fit,
-            minmax(260px, 1fr)
-        ); /* Responsive grid for cards */
-        justify-content: start; /* Left-aligned */
+        overflow-x: visible;
+        grid-auto-flow: row;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        justify-content: start;
     }
 
     .category-row > div {
-        min-width: 260px; /* Slightly smaller for grid layout */
+        min-width: 260px;
         max-width: 260px;
     }
 
     #carousel blockquote {
-        max-width: 800px; /* Full max-width on medium screens and up */
+        max-width: 800px;
     }
 }
 
 @media (min-width: 1024px) {
-    /* Tailwind's 'lg' breakpoint */
     .category-row > div {
-        min-width: 320px; /* Restore full width on larger screens */
+        min-width: 320px;
         max-width: 320px;
     }
 }
 
-/* Ensure X embeds fit nicely and are pixel-tight */
 .video-content blockquote {
-    width: 100%; /* Full width within container */
-    height: auto; /* Maintain aspect ratio */
+    width: 100%;
+    height: auto;
 }
 
-/* Minimal hover effects for links */
 a:hover {
-    text-decoration: underline; /* Clean, minimal hover */
+    text-decoration: underline;
 }

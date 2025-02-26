@@ -1,26 +1,32 @@
 {
   "videos": [
     {
-      "id": "1",
-      "url": "https://twitter.com/brotzky_/status/1894428493993193533",
-      "title": "Prompt Magic",
-      "category": "Tech",
-      "section": "featured"
+      "url": "https://twitter.com/MengTo/status/1894655578217353637",
+      "category": "featured"
     },
     {
-      "id": "2",
-      "url": "https://twitter.com/readswithravi/status/1894636597145969026",
-      "title": "Tech Challenge",
-      "category": "Tech",
-      "section": "featured"
+      "url": "https://twitter.com/brotzky_/status/1892984381771337866",
+      "category": "Tech"
     },
     {
-      "id": "3",
+      "url": "https://twitter.com/brotzky_/status/1892984381771337866",
+      "category": "Tech"
+    },
+    {
+      "url": "https://twitter.com/brotzky_/status/1892984381771337866",
+      "category": "Tech"
+    },
+    {
+      "url": "https://twitter.com/brotzky_/status/1892984381771337866",
+      "category": "Tech"
+    },
+    {
+      "url": "https://twitter.com/brotzky_/status/1892984381771337866",
+      "category": "Tech"
+    },
+    {
       "url": "https://twitter.com/productsantos/status/1893057660179599649",
-      "title": "Funny Post",
-      "category": "Humor",
-      "section": "trending"
+      "category": "Humor"
     }
-  ],
-  "categories": ["Tech", "Humor"]
+  ]
 }
