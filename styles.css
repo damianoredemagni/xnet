@@ -4,6 +4,9 @@
 }
 
 .category-row {
+    display: flex; /* Use flex for horizontal layout */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    gap: 1rem; /* Space between items */
     -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
     scrollbar-width: none; /* Hide scrollbar in Firefox */
 }
@@ -14,17 +17,65 @@
 
 /* Ensure smooth scrolling and spacing */
 .category-row > div {
-    flex-shrink: 0;
+    flex-shrink: 0; /* Prevent items from shrinking */
+    min-width: 300px; /* Consistent width for videos */
 }
 
 /* Add hover effects for interactivity */
-.category-row > div:hover {
+.category-row > div:hover,
+#carousel > div:hover {
     transform: scale(1.05);
     transition: transform 0.3s ease;
+    cursor: pointer; /* Indicate clickable area */
 }
 
-/* Style the video placeholders (optional, remove if not needed) */
-.bg-gray-800 {
+/* Style the video containers */
+.video-container {
+    position: relative; /* For overlay */
+    width: 100%;
+    height: 100%;
+    background-color: #1f2937; /* Darker gray for contrast */
     border-radius: 8px;
+    overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the video content (X embed and title) */
+.video-content {
+    position: relative;
+    z-index: 5; /* Below overlay */
+}
+
+/* Clickable overlay for videos */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10; /* Above the video content */
+    background: rgba(0, 0, 0, 0); /* Fully transparent (empty) */
+    transition: background 0.3s ease;
+}
+
+.video-overlay:hover {
+    background: rgba(0, 0, 0, 0.2); /* Darker on hover for feedback */
+}
+
+/* Style the X embed and title */
+.video-content blockquote,
+.video-content p {
+    margin: 0;
+}
+
+.video-content p {
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+}
+
+/* Ensure X embed fits within container */
+.video-content blockquote {
+    max-width: 100%;
 }

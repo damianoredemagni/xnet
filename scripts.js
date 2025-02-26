@@ -27,10 +27,13 @@ if (document.getElementById("carousel")) {
       .map(
         (v, i) => `
       <div class="absolute w-full h-full ${i === 0 ? "" : "hidden"}" data-id="${v.id}">
-        <a href="details.html?id=${v.id}">
-          <blockquote class="twitter-tweet" data-media-max-width="560"><a href="${v.url}"></a></blockquote>
-          <h2 class="text-2xl mt-2">${v.title}</h2>
-        </a>
+        <div class="video-container relative">
+          <div class="video-content">
+            <blockquote class="twitter-tweet" data-media-max-width="560"><a href="${v.url}"></a></blockquote>
+            <p class="text-2xl mt-2">${v.title}</p>
+          </div>
+          <div class="video-overlay" onclick="window.location.href='details.html?id=${v.id}'"></div>
+        </div>
       </div>
     `,
       )
@@ -49,14 +52,17 @@ if (document.getElementById("carousel")) {
       const videos = data.videos.filter((v) => v.category === cat);
       categories.innerHTML += `
         <h2 class="text-xl mb-2">${cat}</h2>
-        <div class="category-row pb-4 flex overflow-x-auto gap-4">
+        <div class="category-row pb-4">
           ${videos
             .map(
               (v) => `
-            <a href="details.html?id=${v.id}" class="min-w-[300px] bg-gray-800 p-4 rounded">
-              <blockquote class="twitter-tweet" data-media-max-width="560"><a href="${v.url}"></a></blockquote>
-              <p>${v.title}</p>
-            </a>
+            <div class="video-container relative">
+              <div class="video-content">
+                <blockquote class="twitter-tweet" data-media-max-width="560"><a href="${v.url}"></a></blockquote>
+                <p>${v.title}</p>
+              </div>
+              <div class="video-overlay" onclick="window.location.href='details.html?id=${v.id}'"></div>
+            </div>
           `,
             )
             .join("")}
@@ -75,7 +81,7 @@ if (document.getElementById("video")) {
     if (video) {
       document.getElementById("video").innerHTML = `
         <h1 class="text-2xl mb-4">${video.title}</h1>
-        <blockquote class="twitter-tweet" data-media-max-width="560"><a href="${v.url}"></a></blockquote>
+        <blockquote class="twitter-tweet" data-media-max-width="560"><a href="${video.url}"></a></blockquote>
       `;
     } else {
       document.getElementById("video").innerHTML = "<p>Video not found.</p>";
