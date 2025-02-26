@@ -30,7 +30,7 @@ if (document.getElementById("carousel")) {
         <div class="video-container relative">
           <div class="video-content">
             <blockquote class="twitter-tweet" data-media-max-width="560"><a href="${v.url}"></a></blockquote>
-            <p class="text-2xl mt-2">${v.title}</p>
+            <p>${v.title}</p>
           </div>
           <div class="video-overlay" onclick="window.location.href='details.html?id=${v.id}'"></div>
         </div>
@@ -39,7 +39,7 @@ if (document.getElementById("carousel")) {
       )
       .join("");
 
-    // Auto-rotate carousel
+    // Auto-rotate carousel (no animation for minimalism)
     let current = 0;
     setInterval(() => {
       carousel.children[current].classList.add("hidden");

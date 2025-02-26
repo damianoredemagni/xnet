@@ -1,46 +1,77 @@
-/* Minimal custom styles for Netflix-like UI */
-#carousel > div {
-    transition: transform 0.5s ease-in-out;
+/* Minimal custom styles for Netflix-like, pixel-tight UI */
+body {
+    font-family: "Arial", sans-serif; /* Clean, readable sans-serif font */
+    -webkit-font-smoothing: antialiased; /* Crisp text rendering */
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #141414; /* Darker black for premium look */
+    color: #f5f5f5; /* Off-white for readability */
 }
 
+/* Wrapper (16px left-right padding) */
+.wrapper {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+/* Section (40px top-bottom padding) */
+section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+/* Container (max-width: 1280px, centered) */
+.container {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Carousel styling */
+#carousel > div {
+    /* No animations, just static positioning */
+}
+
+#carousel blockquote {
+    max-width: 800px; /* Pixel-tight max-width for X/Twitter embeds in carousel */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Category rows with grid and horizontal scrolling */
 .category-row {
-    display: flex; /* Use flex for horizontal layout */
+    display: grid; /* Use grid for precise gap control */
+    grid-auto-flow: column; /* Horizontal flow for scrolling */
     overflow-x: auto; /* Enable horizontal scrolling */
-    gap: 1rem; /* Space between items */
+    gap: 24px; /* 24px gap between items, as requested */
+    padding-bottom: 1rem; /* Slight padding for scrolling */
     -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
     scrollbar-width: none; /* Hide scrollbar in Firefox */
+    align-items: start; /* Align items to the top */
+    justify-content: start; /* Left-aligned, as requested */
 }
 
 .category-row::-webkit-scrollbar {
     display: none; /* Hide scrollbar in Chrome/Safari */
 }
 
-/* Ensure smooth scrolling and spacing */
+/* Ensure smooth scrolling and consistent sizing for category items */
 .category-row > div {
+    min-width: 320px; /* Pixel-tight max-width for category row items */
+    max-width: 320px; /* Cap width for consistency */
     flex-shrink: 0; /* Prevent items from shrinking */
-    min-width: 300px; /* Consistent width for videos */
 }
 
-/* Add hover effects for interactivity */
-.category-row > div:hover,
-#carousel > div:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
-    cursor: pointer; /* Indicate clickable area */
-}
-
-/* Style the video containers */
+/* Video container styling (Netflix-like card, using grid) */
 .video-container {
-    position: relative; /* For overlay */
-    width: 100%;
-    height: 100%;
-    background-color: #1f2937; /* Darker gray for contrast */
+    display: grid; /* Use grid for card layout and gap control */
+    background-color: #1a202c; /* Slightly lighter dark gray for contrast */
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    gap: 8px; /* Internal gap for card content */
 }
 
-/* Style the video content (X embed and title) */
+/* Video content (X embed and title) */
 .video-content {
     position: relative;
     z-index: 5; /* Below overlay */
@@ -55,27 +86,115 @@
     height: 100%;
     z-index: 10; /* Above the video content */
     background: rgba(0, 0, 0, 0); /* Fully transparent (empty) */
-    transition: background 0.3s ease;
 }
 
 .video-overlay:hover {
     background: rgba(0, 0, 0, 0.2); /* Darker on hover for feedback */
+    cursor: pointer; /* Indicate clickable area */
 }
 
-/* Style the X embed and title */
-.video-content blockquote,
+/* Style the X embed */
+.video-content blockquote {
+    margin: 0;
+    padding: 0; /* Remove default padding for pixel-tight fit */
+    max-width: 100%; /* Ensure embed fits within 320px or 800px */
+}
+
+/* Style the title below the video (Netflix-like, pixel-tight) */
 .video-content p {
     margin: 0;
-}
-
-.video-content p {
-    padding: 0.5rem;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
+    padding: 12px; /* Pixel-tight padding for readability */
+    background: rgba(0, 0, 0, 0.6); /* Slightly darker for contrast */
+    color: #f5f5f5;
     text-align: center;
+    font-size: 0.875rem; /* Smaller, readable font size */
+    line-height: 1.25; /* Better readability */
+    font-weight: 500; /* Slightly lighter for minimal look */
 }
 
-/* Ensure X embed fits within container */
+/* Details page video styling */
+#video {
+    background-color: #1a202c; /* Consistent with cards */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    padding: 16px; /* Pixel-tight padding */
+}
+
+/* Typography refinements */
+h1,
+h2 {
+    font-weight: 600; /* Slightly bolder for headings */
+    color: #f5f5f5; /* Off-white for readability */
+}
+
+p {
+    font-weight: 400; /* Normal weight for body text */
+}
+
+/* Responsive adjustments for pixel-tight design */
+@media (max-width: 767px) {
+    /* Tailwind's 'sm' breakpoint and below */
+    #carousel {
+        height: 40vh; /* Shorter height on smaller screens */
+    }
+
+    .wrapper {
+        padding-left: 8px; /* Reduced padding on mobile */
+        padding-right: 8px;
+    }
+
+    section {
+        padding-top: 20px; /* Reduced padding on mobile */
+        padding-bottom: 20px;
+    }
+
+    .category-row > div {
+        min-width: 240px; /* Smaller cards on mobile */
+        max-width: 240px;
+    }
+
+    #carousel blockquote {
+        max-width: 600px; /* Reduced max-width for mobile carousel */
+    }
+}
+
+@media (min-width: 768px) {
+    /* Tailwind's 'md' breakpoint */
+    .category-row {
+        overflow-x: visible; /* Disable horizontal scrolling on medium screens and up */
+        grid-auto-flow: row; /* Switch to row flow for grid-like layout */
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(260px, 1fr)
+        ); /* Responsive grid for cards */
+        justify-content: start; /* Left-aligned */
+    }
+
+    .category-row > div {
+        min-width: 260px; /* Slightly smaller for grid layout */
+        max-width: 260px;
+    }
+
+    #carousel blockquote {
+        max-width: 800px; /* Full max-width on medium screens and up */
+    }
+}
+
+@media (min-width: 1024px) {
+    /* Tailwind's 'lg' breakpoint */
+    .category-row > div {
+        min-width: 320px; /* Restore full width on larger screens */
+        max-width: 320px;
+    }
+}
+
+/* Ensure X embeds fit nicely and are pixel-tight */
 .video-content blockquote {
-    max-width: 100%;
+    width: 100%; /* Full width within container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Minimal hover effects for links */
+a:hover {
+    text-decoration: underline; /* Clean, minimal hover */
 }
