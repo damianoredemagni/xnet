@@ -1,0 +1,12 @@
+{
+  "videos": [
+    {
+      "id": "1",
+      "url": "https://twitter.com/brotzky_/status/1894428493993193533",
+      "title": "Prompt Magic",
+      "category": "Tech",
+      "section": "featured"
+    }
+  ],
+  "categories": ["Tech"]
+}

@@ -1,0 +1,12 @@
+/* Minimal custom styles */
+#carousel > div {
+    transition: transform 0.5s ease-in-out;
+}
+.category-row {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+}
+.category-row::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for sleekness */
+}
